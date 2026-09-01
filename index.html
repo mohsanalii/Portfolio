@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohsan Ali - Frontend & Automation Developer</title>
+<meta name="description" content="Frontend & Automation Developer at Prism Tech International. Shopify, React, Next.js, WordPress and the automation behind them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#152621;
+    --surface:#1C3229;
+    --ivory:#F4EFE3;
+    --muted:#A9BBAC;
+    --gold:#D9A94B;
+    --line:#2C463A;
+    --max:1060px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ivory);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  #progress{
+    position:fixed;top:0;left:0;height:2px;width:0%;
+    background:var(--gold);z-index:60;transition:width .1s linear;
+  }
+  nav{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:50;}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:22px 32px;}
+  .brand{font-family:'Fraunces';font-size:19px;}
+  .navlinks{display:flex;gap:30px;font-size:14.5px;color:var(--muted);}
+  .navlinks a{position:relative;padding-bottom:3px;transition:color .2s ease;}
+  .navlinks a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .25s ease;
+  }
+  .navlinks a:hover{color:var(--gold);}
+  .navlinks a:hover::after{width:100%;}
+  .navlinks a.active{color:var(--gold);}
+  .navlinks a.active::after{width:100%;}
+
+  .hero{padding:100px 0 80px;}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr 0.9fr;gap:52px;align-items:start;}
+  .hero .kicker,.hero h1,.hero p,.hero .cta-row{
+    opacity:0;transform:translateY(14px);
+    animation:rise .7s ease forwards;
+  }
+  .hero .kicker{animation-delay:.05s;font-size:15px;color:var(--gold);margin-bottom:22px;}
+  .hero h1{
+    animation-delay:.18s;
+    font-size:clamp(30px,4.4vw,46px);
+    line-height:1.18;
+    max-width:17ch;
+    font-weight:500;
+    margin-bottom:26px;
+  }
+  .hero p{animation-delay:.32s;font-size:17px;color:var(--muted);max-width:56ch;margin-bottom:34px;}
+  .cta-row{animation-delay:.46s;display:flex;gap:16px;flex-wrap:wrap;}
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion:reduce){
+    .hero .kicker,.hero h1,.hero p,.hero .cta-row,.demo-card{animation:none;opacity:1;transform:none;}
+  }
+  .btn{
+    display:inline-flex;align-items:center;padding:13px 26px;
+    font-size:15px;font-weight:600;border-radius:2px;
+    border:1px solid transparent;transition:all .18s ease;
+  }
+  .btn-primary{background:var(--gold);color:#1a1408;}
+  .btn-primary:hover{background:#e6bb63;transform:translateY(-2px);}
+  .btn-ghost{border-color:var(--line);color:var(--ivory);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+  .copy-btn{
+    background:none;border:none;color:var(--muted);font:inherit;font-size:14px;
+    cursor:pointer;border-bottom:1px solid var(--line);padding-bottom:3px;
+    transition:color .15s ease,border-color .15s ease;
+  }
+  .copy-btn:hover{color:var(--gold);border-color:var(--gold);}
+
+  /* demo widget */
+  .demo-card{
+    border:1px solid var(--line);background:var(--surface);padding:24px;
+    opacity:0;transform:translateY(14px);animation:rise .7s ease forwards;animation-delay:.55s;
+  }
+  .demo-label{font-size:12.5px;color:var(--muted);margin-bottom:14px;}
+  .demo-tabs{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:18px;}
+  .demo-tab{flex:1;padding:9px 0;font-size:13px;font-weight:600;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:'Work Sans';transition:background .15s ease,color .15s ease;}
+  .demo-tab.active{background:var(--gold);color:#1a1408;}
+  .demo-body{min-height:196px;}
+  .demo-step{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted);padding:6px 0;opacity:0;animation:rise .4s ease forwards;}
+  .demo-step .dot{width:6px;height:6px;border-radius:50%;background:var(--line);flex-shrink:0;transition:background .2s;}
+  .demo-step.done .dot{background:var(--gold);}
+  .demo-step.done{color:var(--ivory);}
+  .demo-timer{font-size:12.5px;color:var(--muted);margin-top:12px;}
+  .demo-timer strong{color:var(--gold);}
+  .demo-run{margin-top:6px;width:100%;padding:10px;background:var(--gold);color:#1a1408;border:none;border-radius:2px;font-weight:600;font-size:13.5px;cursor:pointer;font-family:'Work Sans';}
+  .demo-run:disabled{opacity:0.55;cursor:default;}
+  .progress-track{height:5px;background:var(--line);border-radius:3px;margin-top:16px;overflow:hidden;}
+  .progress-fill{height:100%;width:0%;background:var(--gold);transition:width 1.1s ease;}
+  .demo-result{font-size:13.5px;color:var(--ivory);margin-top:12px;opacity:0;transition:opacity .3s ease;}
+  .demo-result.show{opacity:1;}
+  .demo-result strong{color:var(--gold);}
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+  }
+
+  .section{padding:76px 0;border-top:1px solid var(--line);}
+  .section-title{font-size:clamp(22px,2.8vw,28px);margin-bottom:8px;}
+  .section-sub{color:var(--muted);font-size:15px;margin-bottom:48px;}
+
+  /* experience */
+  .employer{
+    display:grid;grid-template-columns:220px 1fr;gap:40px;margin-bottom:56px;
+  }
+  .employer-meta h3{font-size:19px;margin-bottom:6px;}
+  .employer-meta .role{color:var(--gold);font-size:14.5px;margin-bottom:4px;}
+  .employer-meta .dates{color:var(--muted);font-size:13.5px;display:flex;align-items:center;gap:7px;}
+  .pulse-dot{
+    width:7px;height:7px;border-radius:50%;background:var(--gold);
+    position:relative;flex-shrink:0;
+  }
+  .pulse-dot::after{
+    content:'';position:absolute;inset:0;border-radius:50%;background:var(--gold);
+    animation:pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse{0%{opacity:.7;transform:scale(1);}100%{opacity:0;transform:scale(2.6);}}
+  @media (prefers-reduced-motion:reduce){.pulse-dot::after{animation:none;display:none;}}
+  .employer-intro{color:var(--muted);font-size:15.5px;margin-bottom:30px;max-width:60ch;}
+
+  .engagement{
+    border-left:2px solid var(--line);
+    padding-left:26px;margin-bottom:34px;position:relative;
+    transition:border-color .2s ease;
+  }
+  .engagement:hover{border-left-color:var(--gold);}
+  .engagement:last-child{margin-bottom:0;}
+  .engagement::before{
+    content:'';position:absolute;left:-5px;top:6px;
+    width:8px;height:8px;border-radius:50%;background:var(--gold);
+  }
+  .engagement h4{font-size:18px;margin-bottom:4px;font-weight:500;}
+  .engagement .etype{font-size:13.5px;color:var(--muted);margin-bottom:12px;}
+  .engagement .etype a{color:var(--gold);}
+  .engagement .etype a:hover{text-decoration:underline;}
+  .engagement p{font-size:15px;color:var(--muted);margin-bottom:14px;max-width:62ch;}
+  .engagement p strong{color:var(--ivory);font-weight:600;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-size:12.5px;color:var(--muted);border:1px solid var(--line);padding:5px 11px;border-radius:20px;}
+
+  /* projects */
+  .year-group{margin-bottom:40px;}
+  .year-group:last-child{margin-bottom:0;}
+  .year-label{font-family:'Fraunces';font-size:15px;color:var(--gold);margin-bottom:18px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;}
+  .proj-card{border:1px solid var(--line);padding:30px;transition:border-color .2s ease,transform .2s ease;}
+  .proj-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+  .proj-card .ptype{font-size:13px;color:var(--gold);margin-bottom:10px;}
+  .proj-card h4{font-size:19px;margin-bottom:12px;}
+  .proj-card p{font-size:14.5px;color:var(--muted);margin-bottom:18px;}
+  .proj-link{display:inline-block;margin-top:14px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);}
+  .proj-link:hover{color:var(--gold);border-color:var(--gold);}
+
+  /* skills */
+  .skills{display:flex;flex-wrap:wrap;gap:44px;}
+  .skill-group{min-width:180px;}
+  .skill-group h4{font-size:15px;color:var(--gold);font-weight:500;margin-bottom:14px;font-family:'Work Sans';}
+  .skill-group ul{list-style:none;}
+  .skill-group li{font-size:15px;padding:5px 0;color:var(--ivory);}
+
+  /* contact */
+  .contact-inner{max-width:640px;}
+  .contact-inner h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:20px;max-width:14ch;}
+  .contact-inner p{color:var(--muted);font-size:16px;margin-bottom:34px;}
+  .contact-links{display:flex;gap:28px;flex-wrap:wrap;margin-top:30px;font-size:14.5px;}
+  .contact-links a{color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:3px;}
+  .contact-links a:hover{color:var(--gold);border-color:var(--gold);}
+
+  footer{padding:30px 0 46px;border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);flex-wrap:wrap;gap:10px;}
+
+  @media (max-width:720px){
+    .employer{grid-template-columns:1fr;gap:16px;}
+    .navlinks{gap:16px;font-size:13.5px;}
+    .hero{padding:64px 0 56px;}
+    .section{padding:52px 0;}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Mohsan Ali</div>
+    <div class="navlinks">
+      <a href="#experience" data-nav="experience">Experience</a>
+      <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#skills" data-nav="skills">Skills</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="kicker">Frontend & Automation Developer · 1+ years · Lahore, Pakistan</div>
+      <h1>I'm a developer who can build almost anything, then automates everything around it.</h1>
+      <p>Currently at Prism Tech International, working across Shopify, WordPress, React and Next.js - plus the browser automation and scripts that remove the manual work behind them. Open to remote roles.</p>
+      <div class="cta-row">
+        <a href="#experience" class="btn btn-primary">See my experience</a>
+        <a href="mailto:chmohsanali10@gmail.com" class="btn btn-ghost">Email me</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="demo-label">A weekly task, two ways</div>
+      <div class="demo-tabs">
+        <button class="demo-tab active" data-mode="manual" type="button">Manual</button>
+        <button class="demo-tab" data-mode="auto" type="button">Automated</button>
+      </div>
+      <div class="demo-body" id="demoBody"></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-title">Experience</div>
+    <div class="section-sub">1+ years building and maintaining live storefronts for international clients.</div>
+
+    <div class="employer">
+      <div class="employer-meta">
+        <h3>Prism Tech International</h3>
+        <div class="role">Frontend & Automation Developer</div>
+        <div class="dates"><span class="pulse-dot"></span> Current · 1+ yrs</div>
+      </div>
+      <div>
+        <p class="employer-intro">I work across frontend development, Shopify and WordPress builds, SEO, and browser automation, shipping and maintaining the two client engagements below. I also led a team of 3 development and SEO interns for three months, from training through performance reporting.</p>
+
+        <div class="engagement">
+          <h4>Zehnaz.ae</h4>
+          <div class="etype">E-commerce · Shopify + SEO · <a href="https://zehnaz.ae" target="_blank" rel="noopener">zehnaz.ae ↗</a></div>
+          <p>A UAE-based e-commerce brand. I handle ongoing <strong>Shopify theme customization in Liquid</strong>, full store SEO audits, keyword and collection-page optimization, and Meta Ads support. I also built and now run a backlink and guest-posting outreach process, training and managing a small intern team to execute it.</p>
+          <div class="tags">
+            <span class="tag">Shopify Liquid</span>
+            <span class="tag">Technical SEO</span>
+            <span class="tag">Meta Ads</span>
+            <span class="tag">Team management</span>
+          </div>
+        </div>
+
+        <div class="engagement">
+          <h4>Vertex Supply Networks</h4>
+          <div class="etype">Supply chain company · WordPress · <a href="https://vertexsupplynetworks.com" target="_blank" rel="noopener">vertexsupplynetworks.com ↗</a></div>
+          <p>A supply chain company. I own the company's <strong>WordPress website</strong>: copy, SEO foundation, DNS and Search Console setup, plus a WhatsApp contact button that adapts per country and the social media launch content.</p>
+          <div class="tags">
+            <span class="tag">WordPress</span>
+            <span class="tag">Technical SEO</span>
+            <span class="tag">Content</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-title">Projects</div>
+    <div class="section-sub">Independent, academic, and personal build work outside day-to-day client engagements.</div>
+
+    <div class="year-group">
+      <div class="year-label">2026</div>
+      <div class="projects">
+        <div class="proj-card">
+          <div class="ptype">Internal tool · Client Work</div>
+          <h4>Internal Order Tracking System</h4>
+          <p>A custom internal order-tracking application built with Next.js and Supabase, taken on deliberately to sharpen auth and database skills on a real, running system rather than a tutorial project.</p>
+          <div class="tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Auth & DB design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2025</div>
+      <div class="projects">
+        <div class="proj-card">
+          <div class="ptype">Web app</div>
+          <h4>Jobtracker</h4>
+          <p>A lightweight app for tracking job applications - roles applied to, status, and follow-ups, in one place.</p>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+          </div>
+          <a class="proj-link" href="https://github.com/mohsanalii/Jobtracker" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2024</div>
+      <div class="projects">
+        <div class="proj-card">
+          <div class="ptype">Web app</div>
+          <h4>Consulting-Web-App</h4>
+          <p>A platform where users browse expert profiles, schedule appointments, pay securely, and communicate in real-time. Experts can register and manage their own profiles.</p>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+          </div>
+          <a class="proj-link" href="https://github.com/mohsanalii/Consulting-Web-App" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+        <div class="proj-card">
+          <div class="ptype">Web app</div>
+          <h4>React-Ai-Interviewer-App</h4>
+          <p>An AI-powered mock interview app built with React, giving candidates practice interviews and feedback.</p>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <a class="proj-link" href="https://github.com/mohsanalii/React-Ai-Interviewer-App" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">2025</div>
+      <div class="projects">
+        <div class="proj-card">
+          <div class="ptype">Applied ML · Final year project</div>
+          <h4>Wheat Disease Detection</h4>
+          <p>A CNN-based image classifier trained on 14,000+ images across 15 disease classes, deployed through a Flask web app so a photo returns a prediction in real time.</p>
+          <div class="tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Flask</span>
+          </div>
+          <a class="proj-link" href="https://github.com/mohsanalii/wheat-disease-detector" target="_blank" rel="noopener">View on GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-title">Skills</div>
+    <div class="section-sub">&nbsp;</div>
+    <div class="skills">
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <ul><li>React</li><li>Next.js</li><li>TypeScript</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>E-commerce & CMS</h4>
+        <ul><li>Shopify (Liquid)</li><li>WordPress</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Automation</h4>
+        <ul><li>Puppeteer</li><li>Playwright</li><li>Python</li><li>n8n</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Backend & Data</h4>
+        <ul><li>Flask</li><li>Supabase</li><li>REST APIs</li></ul>
+      </div>
+      <div class="skill-group">
+        <h4>Growth</h4>
+        <ul><li>Technical SEO</li><li>Meta Ads</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <h2>Let's build something that runs itself.</h2>
+      <p>Open to remote roles and freelance work: frontend development, Shopify or WordPress builds, or automating a workflow that's currently eating up your team's time.</p>
+      <a href="mailto:chmohsanali10@gmail.com" class="btn btn-primary">chmohsanali10@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://github.com/mohsanalii/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/mohsan-alii/" target="_blank" rel="noopener">LinkedIn</a>
+        <button class="copy-btn" id="copyEmail" type="button">Copy email</button>
+        <span>Lahore, Pakistan and Remote</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Mohsan Ali</span>
+    <span>Frontend & Automation Developer</span>
+  </div>
+</footer>
+
+<script>
+  // scroll progress bar
+  var progress = document.getElementById('progress');
+  function updateProgress(){
+    var h = document.documentElement;
+    var scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = scrolled + '%';
+  }
+  document.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  // active nav tracking
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.navlinks a');
+  var navObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        navLinks.forEach(function(l){ l.classList.remove('active'); });
+        var active = document.querySelector('.navlinks a[data-nav="'+entry.target.id+'"]');
+        if(active) active.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-45% 0px -45% 0px'});
+  sections.forEach(function(s){ navObserver.observe(s); });
+
+  // manual vs automated demo
+  var demoBody = document.getElementById('demoBody');
+  var demoTabs = document.querySelectorAll('.demo-tab');
+  var manualSteps = ['Export competitor prices', 'Open each product page', 'Copy price into sheet', 'Update stock status', 'Repeat next week'];
+  var demoTimers = [];
+  function clearDemoTimers(){ demoTimers.forEach(function(t){ clearTimeout(t); }); demoTimers = []; }
+
+  function renderManual(){
+    clearDemoTimers();
+    demoBody.innerHTML = '<div id="steps"></div><div class="demo-timer">Time spent: <strong id="timeVal">0</strong> min/week</div>';
+    var stepsEl = document.getElementById('steps');
+    var timeVal = document.getElementById('timeVal');
+    var elapsed = 0;
+    manualSteps.forEach(function(step, i){
+      var t = setTimeout(function(){
+        var el = document.createElement('div');
+        el.className = 'demo-step';
+        el.style.animationDelay = '0s';
+        el.innerHTML = '<span class="dot"></span>' + step;
+        stepsEl.appendChild(el);
+        requestAnimationFrame(function(){ el.classList.add('done'); });
+        elapsed += 9;
+        timeVal.textContent = elapsed;
+      }, i * 480);
+      demoTimers.push(t);
+    });
+  }
+
+  function renderAuto(){
+    clearDemoTimers();
+    demoBody.innerHTML =
+      '<div class="demo-step done"><span class="dot"></span>Script scrapes competitor prices</div>' +
+      '<div class="demo-step done" style="animation-delay:.08s"><span class="dot"></span>Updates the sheet automatically</div>' +
+      '<div class="demo-step done" style="animation-delay:.16s"><span class="dot"></span>Pings Slack when done</div>' +
+      '<button class="demo-run" id="runAuto" type="button">Run automation</button>' +
+      '<div class="progress-track"><div class="progress-fill" id="progFill"></div></div>' +
+      '<div class="demo-result" id="demoResult"></div>';
+    var runBtn = document.getElementById('runAuto');
+    var fill = document.getElementById('progFill');
+    var result = document.getElementById('demoResult');
+    runBtn.addEventListener('click', function(){
+      runBtn.disabled = true;
+      runBtn.textContent = 'Running...';
+      requestAnimationFrame(function(){ fill.style.width = '100%'; });
+      var t = setTimeout(function(){
+        result.innerHTML = '<strong>Done in 0.9s.</strong> Runs automatically every night, no manual work.';
+        result.classList.add('show');
+        runBtn.textContent = 'Run again';
+        runBtn.disabled = false;
+        fill.style.width = '0%';
+      }, 1100);
+      demoTimers.push(t);
+    });
+  }
+
+  demoTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      demoTabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      if(tab.dataset.mode === 'manual'){ renderManual(); } else { renderAuto(); }
+    });
+  });
+  renderManual();
+
+  // copy email
+  var copyBtn = document.getElementById('copyEmail');
+  if(copyBtn){
+    copyBtn.addEventListener('click', function(){
+      navigator.clipboard.writeText('chmohsanali10@gmail.com').then(function(){
+        var original = copyBtn.textContent;
+        copyBtn.textContent = 'Copied';
+        setTimeout(function(){ copyBtn.textContent = original; }, 1800);
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
