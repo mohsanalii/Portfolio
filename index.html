@@ -79,7 +79,27 @@ main,header,footer{position:relative;z-index:1}
 .btn.solid{background:var(--amber);border-color:var(--amber);color:var(--amber-ink)}
 .btn.solid:hover{background:#ffc46c;border-color:#ffc46c}
 .btn.small{padding:10px 16px;font-size:.92rem}
+.mail{position:relative}
+.mail::after{
+  content:attr(data-email);
+  position:absolute;left:50%;top:calc(100% + 10px);
+  transform:translate(-50%,-4px);
+  background:var(--panel);color:var(--text);
+  border:1px solid var(--line);border-radius:8px;
+  padding:8px 12px;font:500 .85rem/1 var(--mono);white-space:nowrap;
+  opacity:0;pointer-events:none;z-index:70;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.6);
+  transition:opacity .2s,transform .2s;
+}
+.mail:hover::after,.mail:focus-visible::after{opacity:1;transform:translate(-50%,0)}
 
+/* top nav button: right edge se align, taake screen se bahar na jaye */
+.mail.tip-right::after{left:auto;right:0;transform:translateY(-4px)}
+.mail.tip-right:hover::after,.mail.tip-right:focus-visible::after{transform:translateY(0)}
+
+/* contact section button: email upar show hogi */
+.mail.tip-up::after{top:auto;bottom:calc(100% + 10px);transform:translate(-50%,4px)}
+.mail.tip-up:hover::after,.mail.tip-up:focus-visible::after{transform:translate(-50%,0)}
 /* hero */
 .hero{padding:76px 0 90px}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:56px;align-items:center}
@@ -284,7 +304,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
       <a href="#stack">Stack</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn solid small" href="mailto:chmohsanali10@gmail.com">Email me</a>
+    <a class="btn solid small mail tip-right"
+   data-email="chmohsanali10@gmail.com"
+   aria-label="Email me at chmohsanali10@gmail.com"
+   href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=chmohsanali10@gmail.com&amp;su=Hello%20Mohsan"
+   target="_blank" rel="noopener">Email me</a>
     <button class="menu" id="menu" aria-expanded="false" aria-controls="links">Menu</button>
   </div>
 </header>
@@ -392,7 +416,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
 
     <article class="panel feature rise" data-spot>
       <div class="txt">
-        <span class="badge live">In progress, international client</span>
+        <span class="badge live">International client</span>
         <h3>Kreativ Icon Virtual Academy website</h3>
         <p>A new website for an online academy in Riyadh, Saudi Arabia that teaches school grades, O and A Levels, and IT and language courses. It has a glassmorphism interface in the client's purple, magenta and gold, and an admin panel with super-admin and admin roles that manages the courses and faculty shown on the public pages.</p>
         <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Tailwind CSS</li><li>Prisma</li><li>NextAuth.js</li><li>Neon Postgres</li></ul>
@@ -505,14 +529,18 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 
     <div class="box">
       <div>
         <h2 id="h-contact">Have something to build, or a chore to automate?</h2>
-        <p>I'm open to remote roles and freelance projects: frontend and full-stack development, Shopify or WordPress builds, and workflow automation. Email is the fastest way to reach me.</p>
+        <p>I'm open to Work and freelance projects: frontend and full-stack development, Shopify or WordPress builds, and workflow automation. Email is the fastest way to reach me.</p>
         <div class="social" style="margin-top:26px">
           <a href="https://github.com/mohsanalii/" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/mohsan-alii/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
       <div class="acts">
-        <a class="btn solid" href="mailto:chmohsanali10@gmail.com">Email me <span aria-hidden="true">✉</span></a>
+        <a class="btn solid mail tip-up"
+   data-email="chmohsanali10@gmail.com"
+   aria-label="Email me at chmohsanali10@gmail.com"
+   href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=chmohsanali10@gmail.com&amp;su=Hello%20Mohsan"
+   target="_blank" rel="noopener">Email me <span aria-hidden="true">✉</span></a>
         <button class="btn" id="copy" type="button">Copy email address</button>
         <a class="btn" href="Mohsan_Ali_Resume.pdf" download>Download CV</a>
       </div>
